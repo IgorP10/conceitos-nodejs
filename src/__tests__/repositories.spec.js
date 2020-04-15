@@ -7,18 +7,18 @@ describe("Repositories", () => {
     const response = await request(app)
       .post("/repositories")
       .send({
-        url: "https://github.com/Rocketseat/umbriel",
-        title: "Umbriel",
-        techs: ["Node", "Express", "TypeScript"]
+        url: "https://github.com/IgorP10/conceitos-nodejs",
+        title: "Desafio Node.js",
+        techs: ["Node", "Express", "TypeScript"],
       });
 
     expect(isUuid(response.body.id)).toBe(true);
 
     expect(response.body).toMatchObject({
-      url: "https://github.com/Rocketseat/umbriel",
-      title: "Umbriel",
+      url: "https://github.com/IgorP10/conceitos-nodejs",
+      title: "Desafio Node.js",
       techs: ["Node", "Express", "TypeScript"],
-      likes: 0
+      likes: 0,
     });
   });
 
@@ -26,9 +26,9 @@ describe("Repositories", () => {
     const repository = await request(app)
       .post("/repositories")
       .send({
-        url: "https://github.com/Rocketseat/umbriel",
-        title: "Umbriel",
-        techs: ["Node", "Express", "TypeScript"]
+        url: "https://github.com/IgorP10/conceitos-nodejs",
+        title: "Desafio Node.js",
+        techs: ["Node", "Express", "TypeScript"],
       });
 
     const response = await request(app).get("/repositories");
@@ -37,11 +37,11 @@ describe("Repositories", () => {
       expect.arrayContaining([
         {
           id: repository.body.id,
-          url: "https://github.com/Rocketseat/umbriel",
-          title: "Umbriel",
+          url: "https://github.com/IgorP10/conceitos-nodejs",
+          title: "Desafio Node.js",
           techs: ["Node", "Express", "TypeScript"],
-          likes: 0
-        }
+          likes: 0,
+        },
       ])
     );
   });
@@ -50,25 +50,25 @@ describe("Repositories", () => {
     const repository = await request(app)
       .post("/repositories")
       .send({
-        url: "https://github.com/Rocketseat/umbriel",
-        title: "Umbriel",
-        techs: ["Node", "Express", "TypeScript"]
+        url: "https://github.com/IgorP10/conceitos-nodejs",
+        title: "Desafio Node.js",
+        techs: ["Node", "Express", "TypeScript"],
       });
 
     const response = await request(app)
       .put(`/repositories/${repository.body.id}`)
       .send({
-        url: "https://github.com/Rocketseat/unform",
-        title: "Unform",
-        techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
+        url: "https://github.com/IgorP10/conceitos-nodejs",
+        title: "Desafio Node.js",
+        techs: ["React", "ReactNative", "TypeScript", "ContextApi"],
       });
 
     expect(isUuid(response.body.id)).toBe(true);
 
     expect(response.body).toMatchObject({
-      url: "https://github.com/Rocketseat/unform",
-      title: "Unform",
-      techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
+      url: "https://github.com/IgorP10/conceitos-nodejs",
+      title: "Desafio Node.js",
+      techs: ["React", "ReactNative", "TypeScript", "ContextApi"],
     });
   });
 
@@ -80,19 +80,19 @@ describe("Repositories", () => {
     const repository = await request(app)
       .post("/repositories")
       .send({
-        url: "https://github.com/Rocketseat/umbriel",
-        title: "Umbriel",
-        techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
+        url: "https://github.com/IgorP10/conceitos-nodejs",
+        title: "Desafio Node.js",
+        techs: ["React", "ReactNative", "TypeScript", "ContextApi"],
       });
 
     const response = await request(app)
       .put(`/repositories/${repository.body.id}`)
       .send({
-        likes: 15
+        likes: 15,
       });
 
     expect(response.body).toMatchObject({
-      likes: 0
+      likes: 0,
     });
   });
 
@@ -101,8 +101,8 @@ describe("Repositories", () => {
       .post("/repositories")
       .send({
         url: "https://github.com/Rocketseat/umbriel",
-        title: "Umbriel",
-        techs: ["Node", "Express", "TypeScript"]
+        title: "Desafio Node.js",
+        techs: ["Node", "Express", "TypeScript"],
       });
 
     await request(app).delete(`/repositories/${response.body.id}`).expect(204);
